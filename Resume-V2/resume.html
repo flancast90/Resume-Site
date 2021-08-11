@@ -123,24 +123,10 @@ I also have plenty more projects at my official GitHub (<a href="https://github.
         </div><br><br><br>
         <div id="blog" class="blog">
             <h2 style="display:inline;" class="heading">## Blog </h2><p style="display:inline" class="read-more" onclick="document.getElementById('fade1').style.display = 'none'; document.getElementById('blog').style.height='auto';">Read More</p>
-                <h3 class="blog-title" id="h04">Why I decided to use Django over Node.js, and then switch back within a month</h3>
-                <h3 class="blog-subheading">May, 2021</h3>
-                <p>
-			<p> Many of you may (and should) be aware of the growing trend of Node.js in web-based applications as a back-end, server, or for REST API&rsquo;s, and may also know about the Python library Django. In April, I decided to stop Node in favour of Django, and quickly grew to love the structured feel of it and python integration.</p>
-
-<p> For those of you not familiar with Django, a quick overview of it can be found at <a href='https://www.djangoproject.com/start/overview/'>https://www.djangoproject.com/start/overview/</a>. In sum, Django&rsquo;s handling of authentication, deployment, RSS feeds, etc, makes it both extremely fast and scaleable. For example, the simple django-admin startproject mysite will generate a folder called mysite with python files containing editable url schemes, admin accounts, and more! Django is based upon small portions of a site, called apps, which can be added to the site as separate url pages, and generated with the command django-admin startapp myapp.</p>
-
-<p> Node.js, by contrast, is more flexible in terms of syntax, which may make it easier to write, but can also make your code messy and unorganized, and your application thus slower. While Node doesn&rsquo;t have a built-in authentication system, it is relatively simple to find a library for it, such as PassportJS (<a href='http://www.passportjs.org/'>http://www.passportjs.org/</a>). Node is more dependent on the developer for setup, relying on the programmer&rsquo;s knowledge of the language to do the necessary installs and require what is needed, not exactly unreasonable for a JavaScript-based language (JS is the most popular programming language as of 2020 | <a href='https://bootcamp.berkeley.edu/blog/most-in-demand-programming-languages/'>https://bootcamp.berkeley.edu/blog/most-in-demand-programming-languages/</a>).</p>
-
-<p> So why exactly did I switch, if Django had so many powerful features? The reason I went-back to Node.js was familiarity, Django install issues, and both language&rsquo;s comparative active base users.</p>
-
-<p> To touch briefly on each of these, I was already comfortable with Node and JavaScript. I had worked with both in my Finniky On Node project and CommCMD repo. Django, on the other hand, was python-based, a language that I could write, but was not as skilled in. Furthermore, being a true &ldquo;JavaScript Junkie,&rdquo; I respect the flexibile-nature of JS, something that I felt Django just couldn&rsquo;t give with its rigid syntax and standards.</p>
-
-<p> Next, I found Django hard to set-up on my laptop, with Linux, Python, and Django all being extremely buggy. In the constant stream of errors I encountered, first I wrestled with the Python2/3 Linux issues, and then PIP bugs, and then finally the Django-admin command having to be scrapped in-favour of python3 -m django (<a href='https://stackoverflow.com/a/43638992'>https://stackoverflow.com/a/43638992</a>) because of PATH related issues. Django is made exclusively for Windows-users, I felt, as many of its commands and installation paths fit perfectly into the WindowOS, and felt faulty and errorous when applied to Linux. For my more python-savvy readers, these errors might seem like a walk-in-the-park to solve, but for me these fixes were the effort of three consecutive days.</p>
-
-<p> Finally, on a partially-related topic to Django&rsquo;s buggy nature, I found that its user-base was small, and getting help for atypical errors on the web was few-and-far between. For example, Django has a total of 266,955 questions on StackOverflow, compared to Node.js&rsquo; 388,458, which is a huge difference for someone used to searching a few keywords and finding a relevant answer (I.e. JS on StackOverflow).</p>
-
-<p> In conclusion, both Django and Node.js are large server-side languages in modern web-development, with each bringing their own benefits and shortcomings to the table. For me, I switched back to Node.js in May of 2021 because of my familiarity with it, its cross-platform nature, and because of its active user-base. While each of these languages is experiencing massive growth in popularity, both for their own good reasons, Node.js was just too feature-rich for me to move-on from. Overall, I would highly recommend either of these languages to any interested programmers out there, but put an emphasis on the look for Node developers in the workforce currently.</p>
+                <h3 class="blog-title" id="title">Why I decided to use Django over Node.js, and then switch back within a month</h3>
+                <h3 class="blog-subheading" id="release">May, 2021</h3>
+                <p id="blog_content">
+			
                 </p>
             <div class="fade" id="fade1"></div>
         </div><br><br><br>
@@ -157,6 +143,43 @@ var height2 = parseInt(document.getElementById('blog').offsetHeight);
 document.getElementById('fade').style.height = height*.8+'px';
 document.getElementById('fade1').style.height = height2*.8+'px';
 });
+
+// THE FOLLOWING CODE IS COPIED FROM MY GIST AT
+// https://gist.github.com/flancast90/b61b3075b9354250e07d4c862ffe831f
+// FEEL FREE TO USE, FORK, OR STAR
+
+// Global variable declarations
+var title = document.getElementById('title');
+var release_date = document.getElementById('release');
+var blog_body = document.getElementById('blog_content');
+
+// here we will bypass CORS to get to medium.com without 
+// a server, as well as change the RSS output to JSON.
+fetch('https://api.rss2json.com/v1/api.json?rss_url=https://medium.com/feed/@flancast90')
+   .then((res) => res.json())
+   .then((data) => {
+
+//store the JSON output in a variable for ease-of-access
+                      medium_code = data;
+                      var title_from_medium = (medium_code.items[0].title);
+                      title.innerHTML = JSON.stringify(title_from_medium).replace(/^"|"$/g, '');
+                      var release_date_from_medium = (medium_code.items[0].pubDate);
+                      release_date.innerHTML = JSON.stringify(release_date_from_medium).replace(/^"|"$/g, '');
+                      var content_from_medium = (medium_code.items[0].content).replace(/^"|"$/g, '');
+                      blog_body.innerHTML = JSON.stringify(content_from_medium).replaceAll('\\n','<br>');
+                      var fix_image = blog_body.getElementsByTagName('figure')[0].getElementsByTagName('img')[0];
+                      var changed = (fix_image.src).split("%22")[1];
+                      changed = changed.substring(0, changed.length - 1);
+                      fix_image.src = (changed);
+                      fix_image.style.position = "relative";
+                      fix_image.style.width = "100%";
+                      var children_img_in_post = parseInt(blog_body.getElementsByTagName('img').length);
+     
+// medium embeds a counter for post views, which we don't need.
+// We will discard of it, since we know it is the last
+// image in the post
+blog_body.getElementsByTagName('img')[children_img_in_post-1].remove();
+                  });
 </script>
 <!--Fontawesome JS-->
     <script src="https://use.fontawesome.com/2c51b2dadb.js"></script>
