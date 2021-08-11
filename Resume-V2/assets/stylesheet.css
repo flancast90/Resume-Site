@@ -131,7 +131,7 @@
             filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00ffffff', endColorstr='#ffffff',GradientType=0 );
         }
         .blog p{
-            text-align:right;
+            text-align:left;
         }
         q{
         background-color: lightgray;
