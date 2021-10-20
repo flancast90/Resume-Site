@@ -206,6 +206,11 @@ function checkScrollDirection(event) {
     }
 }
 
+// prevent "wobble" scrolling in safari
+if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+    document.addEventListener('mousedown', e => e.preventDefault());
+}
+
 // return mouse direction as boolean
 function checkScrollDirectionIsUp(event) {
     if (event.wheelDelta) {
