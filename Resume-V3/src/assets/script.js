@@ -5,20 +5,15 @@ var h;
 
 window.onload = function() {
     if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
-        if (window.innerWidth < window.innerHeight) {
+        if ((screen.height > screen.width)&&(window.orientation == 0)){
             document.getElementById('loading-text').innerText = "Please rotate device.";
-
-            screen.orientation.addEventListener('change', function() {
-                setTimeout(function() {
-                    if (window.innerWidth > window.innerHeight) {
-                        document.getElementById('preloader').remove();
-                    }
-                }, 100);    
-            });
+            window.addEventListener("orientationchange", handleOrientationChange, false);
         }else {
             setTimeout(function() {    
-                document.getElementById('preloader').remove();
+                document.getElementById('preloader').style.display = "none";
             }, 750);
+            window.addEventListener("orientationchange", handleOrientationChange, false);
+
         }   
     }else {
         setTimeout(function() {    
@@ -28,6 +23,30 @@ window.onload = function() {
 
     background_handler();
 }
+
+var handleOrientationChange = (function() {
+
+    var struct = function(){
+        struct.parse();
+    };
+    struct.showPortraitView = function(){
+        document.getElementById("preloader").style.display = "block";
+        document.getElementById('loading-text').innerText = "Please rotate device.";
+    };
+    struct.showLandscapeView = function(){
+        document.getElementById("preloader").style.display = "none";
+    };
+    struct.parse = function(){
+        if (window.orientation == 0) {
+            this.showPortraitView();
+        } else {
+            this.showLandscapeView();
+        }
+    };
+    struct.lastOrientation = window.orientation;
+    return struct;
+})();
+
 
 // prevent flickering by dynamically hiding all non-used content
 for (var i = 1; i < slideLength; i++) {
