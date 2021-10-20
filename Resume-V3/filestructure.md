@@ -1,6 +1,6 @@
 # Filestructure How-To
 <br/>
-###/src
+### /src
 
 ``/src/resume.html``
 
@@ -8,7 +8,7 @@
 
 <br />
 
-###/src/assets
+### /src/assets
 
 ``/src/assets/img``
 
@@ -24,7 +24,7 @@
 
 <br />
 
-###/src/assets/dist
+### /src/assets/dist
 
 ``/src/assets/dist/script.min.js``
 
