@@ -238,7 +238,7 @@
     font-size: 0.8em;
 }
 
-@media only screen and (max-height: 800px) {
+@media only screen and (max-height: 750px) {
     .row1 {
         display: block;
     }
@@ -246,7 +246,7 @@
         display: none;
     }
 }
-@media only screen and (min-height: 801px) {
+@media only screen and (min-height: 751px) {
     .row1 {
         display: block;
     }
