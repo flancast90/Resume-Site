@@ -1,0 +1,72 @@
+<html>
+<body style="background-color:#c4c4c4">
+
+<div style="width:60%; position: absolute; left:20%; right:20%; background-color: white; padding-left:10px; padding-right:10px; overflow-y:scroll; border-radius:10px; height:95%; top:2.5%; bottom: 2.5%;">
+<h1 id="greeting">Hi!</h1>
+<br>
+	<center>
+		<h2>What is this?</h2>
+		<p>aVWAPP (a Vulnerable Web Application) is a hackable online store to teach the basics of web exploitation and hacking. To get started, read the <a href="#instructions">instructions</a> and then click <a href="#" onclick="redir()">HERE</a>.
+		
+		<br>
+		<br>
+		
+		<h2 id="instructions">Instructions</h2>
+		<p>The point of aVWAPP is to exploit the online store in such a way to inject JavaScript, bypass item limits, and hack price forms. By doing these practice exercises, an understanding of HTML, insecure elements, and basic web attacks will be learned.</p>
+		
+		<br>
+		<br>
+		
+		<h2 id="disclaimer">Disclaimer</h2>
+		<p>aVWAPP is <i>intentionally vulnerable</i>, meaning that it follows the terms of use that hackers can practice there skills on it. However, it is important to note that it is agains the terms of use of most sites (and often illegal) to attempt to break content or hack. By checking the below box and beginning the attack practice, you agree that you will only use the skills taught in an educational and non-harmful way.</p>
+		
+		<br>
+		<br>
+		<br>
+		
+		I agree to the above information:<input id="agree" type="checkbox"/>
+		
+		<br>
+		<br>
+		<br>
+		
+		<a href="#" id="take-me-there" onclick="redir()">Take Me There!</a>
+		<br>
+		<br>
+
+	</center>
+</div>
+
+
+<script>
+window.onload = function() {
+	if (localStorage.getItem('name') == null) {
+		name = getName();
+		
+		localStorage.setItem('name', name);
+	}
+	
+	document.getElementById('greeting').innerText = "Hi "+name+"!";
+	
+}
+
+function getName() {
+	var name = prompt("What is your name? ")
+	
+	if (name == null) {
+		getName();
+	}else {
+		return name;
+	}
+}
+
+function redir() {
+	if (agree.checked) {
+		window.location.href = window.location.href.split('/Instructions.html')[0]+'/aVWAPP.html';
+	}else {
+		alert('You must agree to the terms to proceed!');
+	}
+}
+</script>
+</body>
+</html>

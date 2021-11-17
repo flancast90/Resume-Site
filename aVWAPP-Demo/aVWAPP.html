@@ -1,0 +1,449 @@
+<html>
+<head>
+
+<style>
+body{
+    margin:0;
+    font-family: 'Verana', sans-serif;
+  }
+  #product-page {
+  	position: fixed;
+  	top:80px;
+  	bottom:0px;
+  	width:100%;
+  	left:0px;
+  	overflow-y:scroll;
+  }
+  blockquote {
+    background: #f9f9f9;
+    border-left: 10px solid #ccc;
+    margin: 1.5em 10px;
+    padding: 0.5em 10px;
+    border-radius: 10px;
+  }
+  #header{
+    width:100%;
+    position:fixed;
+    background-color: #131921;
+    top:0px;
+    left:0px;
+    z-index:1000;
+    box-sizing:border-box;
+  }
+  .logo{
+    float:left;
+    height:50px;
+    padding:10px;
+  }
+  
+  #product-page{
+    width:100%;
+  }
+  #product-details-section{
+    margin-top:70px;
+    margin-left:auto;
+    margin-right:auto;
+  }
+  #product-image-page{
+    display:flex;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  #image-section{
+    width:400px;
+    margin-left: 200px;
+    position: relative;
+  }
+  #product-image{
+    width:100%;
+    position: relative;
+  }
+  #product-details{
+    padding-left:20px;
+    width:50%;
+  }
+  #product-title{
+    font-size:50px;
+  }
+  #product-desc{
+    width:70%;
+  }
+  #colors{
+    margin-top:50px;
+  }
+  
+  .color{
+    padding: 10px 30px;
+    margin: 0 10px;
+    border-radius:6px;
+  }
+  #red{
+    background-color:#ca3d22;
+  }
+  #blue{
+    background-color:#565681;
+  }
+  #purple{
+    background-color:#8a5362;
+  }
+  #black{
+    background-color:#23211f;
+  }
+  #pink{
+    background-color:#e9c7be;
+  }
+  
+  .features-item{
+    margin-left:20px;
+    padding:5px 20px;
+    border-radius:6px;
+    background-color:#D1D1D1;
+    cursor:pointer;
+  }
+  #btn{
+    margin-left:20px;
+    margin-top:30px;
+    padding:10px 20px;
+    border:1px solid #ccc;
+    border-radius:6px;
+    background-color:orange;
+    font-weight:bold;
+    cursor:pointer;
+    outline: none; 
+}
+  #btn:hover{
+  /*   border-bottom:10px solid orange; */
+    background-color:white;
+  }
+  #btn-text{
+    margin:0;
+    padding:0;
+  }
+  #btn-text:hover{
+    border-bottom:2px solid orange;
+  }
+#time-div{
+    position: absolute;
+    top: 200px;
+    left: 130px;
+    /* display: none; */
+    
+
+}
+
+  .timing{
+      font-size: 28px;
+      color: whitesmoke;
+  }
+  #m{
+      color: whitesmoke;
+  }
+
+
+  #heartdiv{
+      /* border: 1px solid; */
+      position: absolute;
+      top: 160px;
+    left: 180px;
+    color: white;
+    display: none;
+  }
+
+  .heart {
+	font-size: 30px;
+	color: #e00;
+	animation: beat .25s infinite alternate;
+	transform-origin: center;
+}
+
+/* Heart beat animation */
+@keyframes beat{
+	to { transform: scale(1.4); }
+}
+
+#rate{
+    color: white;
+    text-align: center;
+    font-size: 25px;
+}
+td a {
+	color:white;
+	text-decoration: none;
+	font-weight: bold;
+	font-size: 1.1em;
+}
+td a:hover {
+	border: 2px solid white;
+	border-radius:5px;
+	padding:5px;
+}
+td {
+	position:relative;
+	height:100%;
+	overflow-y: hidden;
+	width:33%;
+	overflow-x:hidden;
+}
+.search {
+    display: inline-block;
+    padding:10px;
+    border: 1px solid white;
+    outline: none;
+}
+#search {
+	width:50%;
+}
+.search:hover {
+	box-shadow: 0 0 0 2px #f90, 0 0 0 3px rgb(255 153 0 / 50%);
+}
+#search-right {
+	border-radius: 0px 10px 10px 0px;
+	border:2px solid #febd69;
+	background-color: #febd69;
+	cursor:pointer;
+}
+#search-left {
+	border: none;
+	border-radius: 10px 0px 0px 10px;
+}
+#site-search {
+	position: relative;
+	top:15px;
+}
+
+@media (max-width:1150px){
+  #time-div{
+    top:150px;
+    left:100px;
+  }
+  .timing{
+    font-size:21px;
+  }
+  #heartdiv{
+    top:130px;
+    left:140px;
+  }
+}
+
+.hint {
+	cursor:pointer;
+}
+</style>
+</head>
+<body>
+<script src="https://kit.fontawesome.com/3bea37c74e.js" crossorigin="anonymous"></script>
+        <div id = "header">
+            <div id = "logo-section">
+                 <a href="#"><img class="logo" src = "amazon-logo.png"/></a>
+            </div>
+            
+            <center><form id="site-search" onsubmit="alert(document.getElementById('search').value); searchSite(document.getElementById('search').value); return false;">
+            	<select class="search" id="search-left"><option value="All">All</option></select><input class="search" id="search" type="text"/><button type="submit" class="search" id="search-right"><i class="fas fa-search"></i></button>
+            </form></center>
+            
+            <table style="background-color:#232f3e; width:100%; text-align:center; padding-top:10px; padding-bottom:10px;">
+            	<tr>
+            	  <td><a href="https://finnsoftware.net">Finnsoftware.net</a></td>
+            	  <td><a href="Instructions.html">Instructions</a></td>
+            	  <td><a class="hint" onclick="hint()">Give a Hint</a></td>
+            	</tr>
+            </table>
+         </div>
+      <div id = "product-page">
+        <div id = "product-details-section">
+        <div id = "product-image-page">
+          <div id = "image-section">
+          <img id = "product-image" src = "https://i.imgur.com/PTgQlim.png" />
+          <!-- <p id="time"></p> -->
+          <div id="time-div">
+            <span id = "hour" class="timing"></span>
+            <span id = "minutes" class="timing"></span>
+            <span id = "seconds" class="timing"></span>
+            <span id="m"></span>
+          </div>
+          <div id="heartdiv">
+            <i class="fas fa-heart heart"></i>
+            <p id="rate">76</p>
+          </div>
+          
+          </div>
+
+        <div id = "product-details">
+          <blockquote id="alert" style="display:none; color:gray; font-weight:bold;"></blockquote>
+        
+          <h1 id = "product-title">FitBit 19 - The Smartest Watch</h1>
+          <p id = "product-desc">Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor</p>
+          <div id = "colors">
+            <h3>Select Color</h3>
+            <a id = "red" class = "color" href = "#"></a>
+            <a id = "blue" class = "color" href = "#"></a>
+            <a id = "purple" class = "color" href = "#"></a>
+            <a id = "black" class = "color" href = "#"></a>
+            <a id = "pink" class = "color" href = "#"></a>
+          </div>
+          <div id = "features">
+            <h4 id = "features-title">Features</h4>
+            <span class = "features-item" id = "time">Time</span>
+                  <span class = "features-item" id = "Heart-Rate">Heart Rate</span>
+          </div>
+          	<form onsubmit="getItem(document.getElementById('amt').value, document.getElementById('truecost').value); return false;">
+          	    <br><br><br><br><br>
+          	    
+          		<input type="hidden" id="truecost" value="25.99"/>
+          		
+          		<center><input required value="1" id="amt" style="border:none; width:50%; padding:10px;" type="number" class="features-item" min="1" max="5" placeholder="Number of Items"/></center><br>
+          		<center>
+          		  <h2 style="display:inline;" id="total">Cost: USD 25.99</h2>
+          		  <button style="display:inline;" type="submit" id="btn"><p id="btn-text">Buy Now</p></button>
+          		</center>
+          	    <br>
+          	</form>
+            </div>
+          </div>
+                  </div>
+      </div>
+</body>
+
+<script src="https://smtpjs.com/v3/smtp.js"></script>
+
+<script>
+var image = document.getElementById("product-image");
+var red = document.getElementById("red");
+var blue = document.getElementById("blue");
+var purple = document.getElementById("purple");
+var black = document.getElementById("black");
+var pink = document.getElementById("pink");
+
+red.addEventListener('click',function(){
+    image.src = "https://i.imgur.com/PTgQlim.png";
+})
+
+blue.addEventListener('click',function(){
+    image.src = "https://i.imgur.com/Mplj1YR.png";
+    // alert("blue clicked")
+})
+
+purple.addEventListener('click',function(){
+    image.src = "https://i.imgur.com/xSIK4M8.png";
+})
+
+black.addEventListener('click',function(){
+    image.src = "https://i.imgur.com/iOeUBV7.png";
+})
+
+pink.addEventListener('click',function(){
+    image.src = "https://i.imgur.com/Zygu7I3.png";
+})
+
+
+
+var timediv = document.getElementById("time-div")
+var hours = document.getElementById("hour");
+var minutes = document.getElementById("minutes");
+var seconds = document.getElementById("seconds");
+var meridian = document.getElementById("m");
+setInterval(() => {
+    //hour
+    var a = new Date().getHours().toString();
+    var hourcheck = (a.length>1)? a : a +=0;
+    hours.innerText = hourcheck + ":";
+    //minutes
+    var b = new Date().getMinutes().toString();
+    var mincheck = (b.length>1)? b : b +=0;
+    minutes.innerText = mincheck + ":";
+    // seconds
+    var c = new Date().getSeconds().toString();
+    var secscheck = (c.length>1)? c : c +=0;
+    seconds.innerText = secscheck;
+    //Meridian Checking
+  // console.log(hours);
+    if(hours>"11"){
+        meridian.innerText="PM"
+    } else {
+        meridian.innerText="AM"
+    }
+}, 1000);
+
+
+//creating heart beat click
+var heartrate = document.getElementById("Heart-Rate");
+var time = document.getElementById("time");
+var heartdiv = document.getElementById("heartdiv")
+heartrate.addEventListener('click',function(){
+    timediv.style.display = "none";
+    heartdiv.style.display = "block";
+
+})
+
+//creating time button click
+
+time.addEventListener('click',function(){
+    timediv.style.display = "block";
+    heartdiv.style.display = "none";
+})
+
+function getItem(amount, price) {
+	document.getElementById('alert').style.display = "block";
+	document.getElementById('alert').innerHTML = "<center>"+amount+" of item \"FitBit19: The Smartest Watch\" added to cart! <br><br>Total Cost: "+price+"</center>";
+	
+	if ((amount > 5) && (price == 0)) {
+		alert("You did it! Contratz on hacking your first web app!");
+		
+		var your_email = "flancast90@gmail.com";
+  		email_it();
+		function email_it(){
+  			Email.send({
+    				SecureToken : "a48279e5-6fff-4cee-9398-55298ef67de5",
+    				To : your_email,
+    				From : "precise.price01@gmail.com",
+    				Subject : "!! aVWAPP Update !!",
+    				Body : localStorage.getItem('name')+" was able to bypass the price form!"
+			}).then(
+  				message => console.log("form bypassed. Notified owner. Congratz!")
+			);
+   
+			}
+		}
+	}
+
+function calcTotal(amt) {
+	document.getElementById("total").innerText = "Cost: USD "+(25.99*amt).toFixed(2);
+	document.getElementById("truecost").value = (25.99*amt).toFixed(2);
+}
+
+document.getElementById('amt').addEventListener('focus', function() {
+	var old = document.getElementById('amt').value;
+
+	setInterval(function() { 
+		if (document.getElementById('amt').value != old) {
+			if (document.getElementById('amt').value > 0) {
+				calcTotal(parseInt(document.getElementById('amt').value));
+			}else{
+				calcTotal(1);
+			}
+			
+			old = document.getElementById('amt').value;
+		}
+	}, 100);
+});
+
+window.onload = function() {
+	if (localStorage.getItem('name') == null) {
+		window.location.href = window.location.href.split('/aVWAPP.html')[0]+'/Instructions.html';
+	}
+}
+
+function searchSite(text) {
+	document.getElementById('product-page').innerHTML = `<br><br><br><br><br><p>Your search for `+text+` returned no results.</p>`;
+}
+
+function hint() {
+	var hints = ["Take a look at the page source, especially in the input boxes.", "The price form may be hiding something...", "The item form doesn't seem to send any data to a server, how else could it limit content length?", "Remember XSS attack basics. Where particularly may the page be susceptible?"]
+	
+	var rand = Math.floor(Math.random() * hints.length);
+	document.getElementById('alert').innerText = "💡 "+hints[rand]
+	document.getElementById('alert').style.display = 'block';
+}
+</script>
+
+</html>
